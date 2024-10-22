@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Number Lookup</title>
+</head>
+<body>
+    <h1>사번 조회</h1>
+    <input type="number" id="employeeInput" placeholder="사번2 입력">
+    <button onclick="lookupEmployee()">검색</button>
+    <p id="result"></p>
+
+    <script>
+        async function lookupEmployee() {
+            const employeeNumber = document.getElementById('employeeInput').value;
+            const response = await fetch('employee_data.json');
+            const data = await response.json();
+
+            const employee = data[employeeNumber];
+            if (employee) {
+                document.getElementById('result').textContent = `사번1: ${employee['사번1']}`;
+            } else {
+                document.getElementById('result').textContent = '해당 사번2를 찾을 수 없습니다.';
+            }
+        }
+    </script>
+</body>
+</html>
